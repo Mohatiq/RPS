@@ -15,6 +15,10 @@ function getComputerChoice(){
 }
 //the logic to get the human choice
 function getHumanChoice(humanChoice){
+    if (roundCount >= maxRounds) {
+        document.getElementById("result").textContent = "🎮 Game over! Refresh to play again.";
+        return;
+      }
     let computerSelection=getComputerChoice();
     document.getElementById("player").textContent=humanChoice;
     document.getElementById("computer").textContent=computerSelection;
