@@ -15,7 +15,7 @@ function getComputerChoice(){
 }
 //the logic to get the human choice
 function getHumanChoice(humanChoice){
-    if (roundCount >= maxRounds) {
+    if (roundCount >= maxRound) {
         document.getElementById("result").textContent = "🎮 Game over! Refresh to play again.";
         return;
       }
@@ -39,7 +39,7 @@ function getHumanChoice(humanChoice){
     `${result} | Round: ${roundCount}/${maxRound} | You ${humanScore} - ${computerScore} Computer`;
 
     if(roundCount===maxRound){
-        let final_message='';
+        let finalMessage='';
         if (humanScore>computerScore){
             finalMessage = "🎉 You win the game!";
         } else if (computerScore > humanScore) {
