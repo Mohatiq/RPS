@@ -47,7 +47,10 @@ function getHumanChoice(humanChoice){
         document.getElementById("result").textContent += `\n${finalMessage}`;
       }
     }
-
+function disableButtons() {
+  const buttons = document.querySelectorAll("#TheplayerchoiceButtons button");
+  buttons.forEach(button => button.disabled = true);
+}
 
 
     
