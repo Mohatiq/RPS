@@ -1,6 +1,8 @@
 //the logic to get the computer choice
 let humanScore=0;
 let computerScore=0;
+let roundCount=0;
+const maxRound=5;
 function getComputerChoice(){
     let number = Math.random();
     if (number<1/3){
@@ -8,46 +10,44 @@ function getComputerChoice(){
     }else if (number<2/3){
         return "rock";
     }else{
-        return " scissors";
+        return "scissors";
     }
 }
 //the logic to get the human choice
-function getHumanChoice(){
-    let choice = prompt("Please enter your choice: ");
-    let playerchoice = choice.toLowerCase();
-    if (playerchoice=== "paper" || playerchoice === "rock" || playerchoice ==="scissors"){
-        return playerchoice;
-    }else{
-        alert("invalid statement. Please choose again:");
-        return getComputerChoice();
+function getHumanChoice(humanChoice){
+    let computerSelection=getComputerChoice();
+    document.getElementById("player").textContent=humanChoice;
+    document.getElementById("computer").textContent=computerSelection;
+    let result='';
+    if (computerSelection===humanChoice){
+        result="it's a tie";
     }
-}
-function playRound(humanChoice,ComputerChoice){
-    if (humanChoice === ComputerChoice){
-        console.log( "This tound is a tie");
-    }else if((humanChoice=='rock' && ComputerChoice=='scissors')||(humanChoice=='paper' && ComputerChoice=='rock')||(humanChoice=='scissors' && ComputerChoice=='paper')){
-        console.log("Congrats. You won!!! ;)");
+    else if((humanChoice==='rock' && computerSelection==='scissors')||(humanChoice==='paper' && computerSelection==='rock')||(humanChoice==='scissors' && computerSelection==='paper')){
+        result="congrats you won";
         humanScore++;
     }else{
-        console.log( "Oups,the machine Won");
+        result="Oopss you lost!";
         computerScore++;
     }
-}
-function playGame(){
-    for(let i=0;i<5;i++){
-    let humanSelection = getHumanChoice();
-    let computerSelection = getComputerChoice();
-    console.log(`You are in round ${i+1}:`);
-    playRound(humanSelection, computerSelection);}
-    if(humanScore>computerScore){
-        console.log("Congratulations! You won the game!");
-    } else if (humanScore < computerScore) {
-        console.log("Sorry, you lost the game. Better luck next time!");
-    } else {
-        console.log("It's a draw!");
-    }
-}
+    roundCount++;
 
-playGame();
+    document.getElementById("result").textContent =
+    `${result} | Round: ${roundCount}/${maxRound} | You ${humanScore} - ${computerScore} Computer`;
+
+    if(roundCount===maxRound){
+        let final_message='';
+        if (humanScore>computerScore){
+            finalMessage = "🎉 You win the game!";
+        } else if (computerScore > humanScore) {
+          finalMessage = "💻 Computer wins the game!";
+        } else {
+          finalMessage = "🤝 It's a draw!";
+        }
+    
+        document.getElementById("result").textContent += `\n${finalMessage}`;
+      }
+    }
+
+
 
     
